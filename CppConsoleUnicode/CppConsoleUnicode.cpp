@@ -24,18 +24,18 @@ int main()
 	const size_t MAX_NUMBER_OF_CHARS = 128; // Максимальное количество символов в UTF-8, которые мы позволяем ввести
 	wchar_t* str = (wchar_t*)calloc(MAX_NUMBER_OF_CHARS, sizeof(wchar_t)); // Выделяем память для вводимой строки
 
-	unsigned long entered_number_of_charrs; // Переменная для значения количества введенных символов
+	unsigned long entered_number_of_chars; // Переменная для значения количества введенных символов
 
 	// Чтение данных с консоли в кодировке UTF-8
-	if (ReadConsoleW(in, str, MAX_NUMBER_OF_CHARS, &entered_number_of_charrs, NULL) == 0) {
+	if (ReadConsoleW(in, str, MAX_NUMBER_OF_CHARS, &entered_number_of_chars, NULL) == 0) {
 		printf("Error: %ld", GetLastError());
 		return -1;
 	}
 
-	if (entered_number_of_charrs > 0) entered_number_of_charrs--; // Удаление перевода строки из ввода (-1 символ)
+	if (entered_number_of_chars > 0) entered_number_of_chars--; // Удаление перевода строки из ввода (-1 символ)
 
-	if (entered_number_of_charrs > 1) {
-		WriteConsoleW(out, str, entered_number_of_charrs, NULL, NULL); // Вывод на экран введенной строки
+	if (entered_number_of_chars > 1) {
+		WriteConsoleW(out, str, entered_number_of_chars, NULL, NULL); // Вывод на экран введенной строки
 		WriteConsoleW(out, newLine, wcslen(newLine), NULL, NULL); // Переход на новую строку
 	}
 
